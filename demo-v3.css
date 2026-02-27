@@ -562,3 +562,28 @@ header {
 .rag-bar { background: linear-gradient(180deg, color-mix(in srgb, var(--bg2) 92%, white 8%) 0%, var(--bg2) 100%); }
 .rag-num { color: var(--cyan); font-weight: 600; }
 .rag-bar-sep { color: var(--border); }
+
+/* Collapsed sidebar: keep brand visible */
+.sidebar.collapsed {
+  width: 84px;
+  min-width: 84px;
+  overflow: hidden;
+}
+.sidebar.collapsed > :not(.sidebar-logo) {
+  display: none !important;
+}
+.sidebar.collapsed .sidebar-logo {
+  padding: 14px 8px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 6px;
+  border-bottom: 0;
+}
+.sidebar.collapsed .logo-text {
+  font-size: 12px;
+  line-height: 1.15;
+}
+.sidebar.collapsed .logo-sub {
+  display: none;
+}
