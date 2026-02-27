@@ -643,6 +643,7 @@ const THEMES = {
   'v2': 'demo-v2.css?v=gh2',
   'v3': 'demo-v3.css?v=gh2',
   'v4': 'demo-v4.css?v=gh2',
+  'v5': 'demo-v5.css?v=gh2',
 };
 
 function setTheme(key) {
