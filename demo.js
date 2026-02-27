@@ -102,6 +102,7 @@ function updateTokBar() {
 // ── SESSION MANAGEMENT ─────────────────────────────────
 const sessions = [];
 let currentSessionId = null;
+let openSessionDocsId = null;
 
 function createSession() {
   const session = {
@@ -114,6 +115,7 @@ function createSession() {
   };
   sessions.unshift(session);
   currentSessionId = session.id;
+  openSessionDocsId = null;
   renderSessions();
   return session;
 }
@@ -145,6 +147,39 @@ function formatSessionTime(date) {
   return date.toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit' });
 }
 
+function getSessionDocs(session) {
+  const byDoc = new Map();
+  session.messages.forEach(m => {
+    if (!m.sources || !m.sources.length) return;
+    m.sources.forEach(src => {
+      const current = byDoc.get(src.doc) || { name: src.doc, refs: 0, bestScore: 0 };
+      current.refs += 1;
+      current.bestScore = Math.max(current.bestScore, src.score || 0);
+      byDoc.set(src.doc, current);
+    });
+  });
+  return [...byDoc.values()].sort((a, b) => b.bestScore - a.bestScore || b.refs - a.refs);
+}
+
+function toggleSessionDocs(e, id) {
+  e.stopPropagation();
+  openSessionDocsId = openSessionDocsId === id ? null : id;
+  renderSessions();
+}
+
+function focusDocByName(e, docName) {
+  e.stopPropagation();
+  const input = document.getElementById('docSearch');
+  if (input) input.value = docName;
+  renderDocs(docName);
+  const panel = document.getElementById('docsPanel');
+  const btn = document.getElementById('toggleDocsBtn');
+  if (panel && panel.classList.contains('collapsed')) {
+    panel.classList.remove('collapsed');
+    if (btn) btn.classList.add('active');
+  }
+}
+
 function renderSessions(filter) {
   if (filter === undefined) filter = document.getElementById('sessionSearch').value || '';
   const fl = filter.toLowerCase();
@@ -169,12 +204,23 @@ function renderSessions(filter) {
   list.innerHTML = '';
   filtered.forEach(s => {
     const isActive = s.id === currentSessionId;
+    const docsUsed = getSessionDocs(s);
+    const hasDocs = docsUsed.length > 0;
+    const isOpen = hasDocs && openSessionDocsId === s.id;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'session-wrap' + (isOpen ? ' open' : '');
+
     const item = document.createElement('div');
     item.className = 'session-item' + (isActive ? ' active' : '');
 
     const tagHtml = s.tag
       ? `<span class="session-tag-badge" onclick="editTag(event,${s.id})" title="Modifica tag">${escHtml(s.tag)}</span>`
       : `<span class="session-tag-badge empty" onclick="editTag(event,${s.id})" title="Aggiungi tag">+ tag</span>`;
+
+    const treeToggle = hasDocs
+      ? `<button class="session-tree-toggle ${isOpen ? 'open' : ''}" onclick="toggleSessionDocs(event,${s.id})" title="Documenti usati (${docsUsed.length})">▸</button>`
+      : `<span class="session-tree-toggle disabled" title="Nessuna fonte">•</span>`;
 
     item.innerHTML = `
       <div class="session-icon">💬</div>
@@ -186,10 +232,25 @@ function renderSessions(filter) {
           ${tagHtml}
         </div>
       </div>
+      ${treeToggle}
       <span class="session-del" onclick="deleteSession(event,${s.id})" title="Elimina">×</span>`;
 
     item.addEventListener('click', () => loadSession(s.id));
-    list.appendChild(item);
+    wrap.appendChild(item);
+
+    if (isOpen) {
+      const tree = document.createElement('div');
+      tree.className = 'session-doc-tree';
+      tree.innerHTML = docsUsed.map(d => `
+        <button class="session-doc-leaf" onclick="focusDocByName(event,'${escHtml(d.name).replace(/'/g, '&#39;')}')" title="Apri nel pannello documenti">
+          <span class="doc-leaf-branch">└</span>
+          <span class="doc-leaf-name">${escHtml(d.name)}</span>
+          <span class="doc-leaf-meta">${d.refs} fonti</span>
+        </button>`).join('');
+      wrap.appendChild(tree);
+    }
+
+    list.appendChild(wrap);
   });
 }
 
@@ -197,6 +258,7 @@ function loadSession(id) {
   if (busy) return;
   currentSessionId = id;
   const session = sessions.find(s => s.id === id);
+  if (session && getSessionDocs(session).length) openSessionDocsId = id;
   if (!session) return;
 
   chatArea.innerHTML = '';
@@ -230,6 +292,7 @@ function deleteSession(event, id) {
       loadSession(sessions[0].id);
     } else {
       currentSessionId = null;
+      openSessionDocsId = null;
       chatArea.innerHTML = '';
       document.getElementById('hints').style.display = 'flex';
       updateHeaderTitle('Consulenza Clinica AI');
@@ -575,11 +638,11 @@ document.addEventListener('click', e => {
 
 // ── THEME SWITCHER ─────────────────────────────────────
 const THEMES = {
-  'v0': 'demo-v0.css',
-  'v1': 'demo-v1.css',
-  'v2': 'demo-v2.css',
-  'v3': 'demo-v3.css',
-  'v4': 'demo-v4.css',
+  'v0': 'demo-v0.css?v=gh2',
+  'v1': 'demo-v1.css?v=gh2',
+  'v2': 'demo-v2.css?v=gh2',
+  'v3': 'demo-v3.css?v=gh2',
+  'v4': 'demo-v4.css?v=gh2',
 };
 
 function setTheme(key) {
