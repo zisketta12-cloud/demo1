@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg: #0d1117;
-  --bg2: #161b22;
-  --surface: #21262d;
-  --surface2: #30363d;
-  --border: #30363d;
-  --blue: #2f81f7;
-  --cyan: #58a6ff;
-  --teal: #1f6feb;
-  --grad: linear-gradient(180deg, #238636 0%, #2ea043 100%);
-  --grad2: linear-gradient(180deg, #1f6feb 0%, #2f81f7 100%);
-  --text: #e6edf3;
-  --text2: #8b949e;
-  --text3: #6e7681;
-  --success: #3fb950;
-  --warn: #d29922;
+  --bg: #120f17;
+  --bg2: #1a1522;
+  --surface: #241d31;
+  --surface2: #332846;
+  --border: #3c3150;
+  --blue: #8b5cf6;
+  --cyan: #a78bfa;
+  --teal: #7c3aed;
+  --grad: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  --grad2: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  --text: #f4efff;
+  --text2: #bcaddd;
+  --text3: #9888be;
+  --success: #a78bfa;
+  --warn: #f59e0b;
   --sw: 288px;
   --dw: 270px;
   --radius: 12px;
@@ -547,3 +547,18 @@ header {
   .docs-panel { display: none; }
   .rag-bar { display: none; }
 }
+
+
+/* Theme accent overrides */
+.session-item.active { background: color-mix(in srgb, var(--blue) 14%, transparent); border-color: color-mix(in srgb, var(--blue) 45%, transparent); }
+.session-tag-badge { border-color: color-mix(in srgb, var(--blue) 45%, transparent); background: color-mix(in srgb, var(--blue) 12%, transparent); color: var(--cyan); }
+.doc-item.active { border-color: color-mix(in srgb, var(--blue) 45%, transparent); background: color-mix(in srgb, var(--blue) 12%, transparent); }
+.msg.user .msg-bubble { background: color-mix(in srgb, var(--blue) 16%, transparent); border-color: color-mix(in srgb, var(--blue) 42%, transparent); }
+.rag-badge { color: var(--blue); border-color: color-mix(in srgb, var(--blue) 38%, transparent); background: color-mix(in srgb, var(--blue) 12%, transparent); }
+.session-tree-toggle.open { border-color: color-mix(in srgb, var(--blue) 45%, transparent); color: var(--cyan); }
+.session-doc-leaf:hover { background: color-mix(in srgb, var(--blue) 12%, transparent); border-color: color-mix(in srgb, var(--blue) 38%, transparent); }
+.score-mid { color: var(--cyan); background: color-mix(in srgb, var(--blue) 16%, transparent); }
+.send-btn { border-color: color-mix(in srgb, var(--blue) 44%, transparent); }
+.rag-bar { background: linear-gradient(180deg, color-mix(in srgb, var(--bg2) 92%, white 8%) 0%, var(--bg2) 100%); }
+.rag-num { color: var(--cyan); font-weight: 600; }
+.rag-bar-sep { color: var(--border); }
