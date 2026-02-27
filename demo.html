@@ -67,7 +67,7 @@
       <div class="header-btn" title="Nuova chat" onclick="newChat()">✦</div>
       <div class="header-btn" id="settingsBtn" title="Impostazioni" onclick="toggleSettings()">⚙</div>
       <!-- SETTINGS PANEL -->
-      <div id="settingsPanel" style="display:none;position:absolute;top:46px;right:14px;background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 10px 8px;min-width:130px;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,0.6);backdrop-filter:blur(12px)">
+      <div id="settingsPanel" style="display:none;position:absolute;top:46px;right:14px;background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 10px 8px;min-width:130px;max-height:min(72vh,300px);overflow-y:auto;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,0.6);backdrop-filter:blur(12px)">
         <div style="font-size:9px;color:#555;letter-spacing:.08em;padding:0 4px 6px">TEMA</div>
         <div style="display:flex;flex-direction:column;gap:3px">
           <button class="theme-btn" data-theme="v0" onclick="setTheme('v0')" style="font-size:11px;padding:4px 10px;border-radius:7px;border:1px solid rgba(59,130,246,0.35);background:rgba(59,130,246,0.1);color:#93c5fd;cursor:pointer;font-family:inherit;text-align:left">⬤ Blu</button>
