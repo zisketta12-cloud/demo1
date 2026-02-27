@@ -219,7 +219,7 @@ function renderSessions(filter) {
       : `<span class="session-tag-badge empty" onclick="editTag(event,${s.id})" title="Aggiungi tag">+ tag</span>`;
 
     const treeToggle = hasDocs
-      ? `<button class="session-tree-toggle ${isOpen ? 'open' : ''}" onclick="toggleSessionDocs(event,${s.id})" title="Documenti usati (${docsUsed.length})">▸</button>`
+      ? `<button class="session-tree-toggle ${isOpen ? 'open' : ''}" onclick="toggleSessionDocs(event,${s.id})" title="Documenti usati">▸</button>`
       : `<span class="session-tree-toggle disabled" title="Nessuna fonte">•</span>`;
 
     item.innerHTML = `
@@ -245,7 +245,7 @@ function renderSessions(filter) {
         <button class="session-doc-leaf" onclick="focusDocByName(event,'${escHtml(d.name).replace(/'/g, '&#39;')}')" title="Apri nel pannello documenti">
           <span class="doc-leaf-branch">└</span>
           <span class="doc-leaf-name">${escHtml(d.name)}</span>
-          <span class="doc-leaf-meta">${d.refs} fonti</span>
+          <span class="doc-leaf-meta">${d.refs} ref</span>
         </button>`).join('');
       wrap.appendChild(tree);
     }
