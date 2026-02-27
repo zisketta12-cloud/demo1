@@ -164,7 +164,7 @@ body {
   margin-bottom: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom-color: #1f6feb33;
+  border-bottom-color: #19c37d33;
 }
 .session-tree-toggle {
   width: 20px;
@@ -188,7 +188,7 @@ body {
 }
 .session-tree-toggle.open {
   transform: rotate(90deg);
-  border-color: #1f6feb66;
+  border-color: #19c37d66;
   color: var(--cyan);
 }
 .session-tree-toggle.disabled {
@@ -207,7 +207,7 @@ body {
   border-bottom: 1px solid var(--border);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background: linear-gradient(180deg, #0f141b 0%, #0d1117 100%);
+  background: linear-gradient(180deg, #111b1a 0%, #0f1518 100%);
   padding: 6px 6px 7px 8px;
 }
 .session-doc-leaf {
@@ -225,8 +225,8 @@ body {
   cursor: pointer;
 }
 .session-doc-leaf:hover {
-  background: #1f6feb1a;
-  border-color: #1f6feb52;
+  background: #19c37d1a;
+  border-color: #19c37d52;
   color: var(--text);
 }
 .doc-leaf-branch {
@@ -295,7 +295,7 @@ header {
 .rag-bar {
   height: 32px;
   border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, #151b25 0%, #121722 100%);
+  background: linear-gradient(180deg, #14211d 0%, #111b19 100%);
   display: flex;
   align-items: center;
   overflow-x: auto;
