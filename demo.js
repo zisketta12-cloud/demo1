@@ -638,11 +638,11 @@ document.addEventListener('click', e => {
 
 // ── THEME SWITCHER ─────────────────────────────────────
 const THEMES = {
-  'v0': 'demo-v0.css',
-  'v1': 'demo-v1.css',
-  'v2': 'demo-v2.css',
-  'v3': 'demo-v3.css',
-  'v4': 'demo-v4.css',
+  'v0': 'demo-v0.css?v=gh2',
+  'v1': 'demo-v1.css?v=gh2',
+  'v2': 'demo-v2.css?v=gh2',
+  'v3': 'demo-v3.css?v=gh2',
+  'v4': 'demo-v4.css?v=gh2',
 };
 
 function setTheme(key) {
