@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg: #15100a;
-  --bg2: #1d160f;
-  --surface: #2a2016;
-  --surface2: #3a2c1d;
-  --border: #433221;
-  --blue: #f59e0b;
-  --cyan: #fbbf24;
-  --teal: #d97706;
-  --grad: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
-  --grad2: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
-  --text: #fff4e5;
-  --text2: #d7b892;
-  --text3: #a88b68;
-  --success: #f59e0b;
-  --warn: #facc15;
+  --bg: #0b0b0c;
+  --bg2: #141416;
+  --surface: #1d1e21;
+  --surface2: #2a2b2f;
+  --border: #34363c;
+  --blue: #9ca3af;
+  --cyan: #d1d5db;
+  --teal: #6b7280;
+  --grad: linear-gradient(180deg, #6b7280 0%, #4b5563 100%);
+  --grad2: linear-gradient(180deg, #9ca3af 0%, #6b7280 100%);
+  --text: #f3f4f6;
+  --text2: #b5b9c2;
+  --text3: #8a909c;
+  --success: #9ca3af;
+  --warn: #f59e0b;
   --sw: 288px;
   --dw: 270px;
   --radius: 12px;
@@ -121,9 +121,8 @@ body {
   border-radius: 8px;
   display: flex;
   gap: 8px;
-  align-items: center;
   cursor: pointer;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 .session-item:hover { background: #21262d88; border-color: #30363d88; }
 .session-item.active { background: #1f6feb22; border-color: #1f6feb66; }
@@ -159,6 +158,7 @@ body {
 .session-item:hover .session-del { opacity: 1; }
 .session-del:hover { background: #f8514929; color: #ff7b72; }
 
+
 .session-wrap { margin-bottom: 6px; }
 .session-wrap.open .session-item {
   margin-bottom: 0;
@@ -169,10 +169,10 @@ body {
 .session-tree-toggle {
   width: 20px;
   height: 20px;
-  border: 1px solid #30363d;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  background: #0d1117;
-  color: #8b949e;
+  background: var(--bg);
+  color: var(--text2);
   font-size: 11px;
   line-height: 1;
   cursor: pointer;
@@ -182,14 +182,14 @@ body {
   transition: transform .14s ease, border-color .14s ease, color .14s ease, background-color .14s ease;
 }
 .session-tree-toggle:hover {
-  border-color: #58a6ff;
-  color: #c9d1d9;
-  background: #161b22;
+  border-color: var(--cyan);
+  color: var(--text);
+  background: var(--bg2);
 }
 .session-tree-toggle.open {
   transform: rotate(90deg);
   border-color: #1f6feb66;
-  color: #58a6ff;
+  color: var(--cyan);
 }
 .session-tree-toggle.disabled {
   border-style: dashed;
@@ -202,9 +202,9 @@ body {
 
 .session-doc-tree {
   margin-left: 22px;
-  border-left: 1px solid #30363d;
-  border-right: 1px solid #30363d;
-  border-bottom: 1px solid #30363d;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   background: linear-gradient(180deg, #0f141b 0%, #0d1117 100%);
@@ -214,7 +214,7 @@ body {
   width: 100%;
   border: 1px solid transparent;
   background: transparent;
-  color: #8b949e;
+  color: var(--text2);
   text-align: left;
   font-size: 11px;
   padding: 6px 8px;
@@ -227,10 +227,10 @@ body {
 .session-doc-leaf:hover {
   background: #1f6feb1a;
   border-color: #1f6feb52;
-  color: #e6edf3;
+  color: var(--text);
 }
 .doc-leaf-branch {
-  color: #6e7681;
+  color: var(--text3);
   font-size: 10px;
 }
 .doc-leaf-name {
@@ -241,9 +241,9 @@ body {
   text-overflow: ellipsis;
 }
 .doc-leaf-meta {
-  color: #6e7681;
+  color: var(--text3);
   font-size: 10px;
-  border: 1px solid #30363d;
+  border: 1px solid var(--border);
   border-radius: 999px;
   padding: 1px 6px;
 }
@@ -295,7 +295,7 @@ header {
 .rag-bar {
   height: 32px;
   border-bottom: 1px solid var(--border);
-  background: var(--bg2);
+  background: linear-gradient(180deg, #151b25 0%, #121722 100%);
   display: flex;
   align-items: center;
   overflow-x: auto;
@@ -304,9 +304,9 @@ header {
   padding: 0 12px;
   scrollbar-width: thin;
 }
-.rag-bar-item { font-size: 11px; color: var(--text3); }
-.rag-num { color: var(--text2); }
-.rag-bar-sep { color: #30363d; }
+.rag-bar-item { font-size: 11px; color: var(--text2); }
+.rag-num { color: var(--cyan); font-weight: 600; }
+.rag-bar-sep { color: var(--border); }
 
 .content-area { flex: 1; min-height: 0; display: flex; }
 .chat-area {
