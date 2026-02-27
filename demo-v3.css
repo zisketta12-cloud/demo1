@@ -121,9 +121,8 @@ body {
   border-radius: 8px;
   display: flex;
   gap: 8px;
-  align-items: center;
   cursor: pointer;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 .session-item:hover { background: #21262d88; border-color: #30363d88; }
 .session-item.active { background: #1f6feb22; border-color: #1f6feb66; }
@@ -158,95 +157,6 @@ body {
 .session-del { opacity: 0; padding: 0 5px; border-radius: 6px; color: var(--text3); }
 .session-item:hover .session-del { opacity: 1; }
 .session-del:hover { background: #f8514929; color: #ff7b72; }
-
-.session-wrap { margin-bottom: 6px; }
-.session-wrap.open .session-item {
-  margin-bottom: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-color: #1f6feb33;
-}
-.session-tree-toggle {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  background: #0d1117;
-  color: #8b949e;
-  font-size: 11px;
-  line-height: 1;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform .14s ease, border-color .14s ease, color .14s ease, background-color .14s ease;
-}
-.session-tree-toggle:hover {
-  border-color: #58a6ff;
-  color: #c9d1d9;
-  background: #161b22;
-}
-.session-tree-toggle.open {
-  transform: rotate(90deg);
-  border-color: #1f6feb66;
-  color: #58a6ff;
-}
-.session-tree-toggle.disabled {
-  border-style: dashed;
-  opacity: .5;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: default;
-}
-
-.session-doc-tree {
-  margin-left: 22px;
-  border-left: 1px solid #30363d;
-  border-right: 1px solid #30363d;
-  border-bottom: 1px solid #30363d;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  background: linear-gradient(180deg, #0f141b 0%, #0d1117 100%);
-  padding: 6px 6px 7px 8px;
-}
-.session-doc-leaf {
-  width: 100%;
-  border: 1px solid transparent;
-  background: transparent;
-  color: #8b949e;
-  text-align: left;
-  font-size: 11px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-}
-.session-doc-leaf:hover {
-  background: #1f6feb1a;
-  border-color: #1f6feb52;
-  color: #e6edf3;
-}
-.doc-leaf-branch {
-  color: #6e7681;
-  font-size: 10px;
-}
-.doc-leaf-name {
-  flex: 1;
-  min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.doc-leaf-meta {
-  color: #6e7681;
-  font-size: 10px;
-  border: 1px solid #30363d;
-  border-radius: 999px;
-  padding: 1px 6px;
-}
 
 .sidebar-bottom {
   border-top: 1px solid var(--border);
