@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GinecoAI — Assistente Clinico</title>
+<link rel="stylesheet" id="theme-link" href="demo-v3.css">
+</head>
+<body>
+
+<!-- ── LEFT SIDEBAR ──────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">⚕</div>
+    <div>
+      <div class="logo-text">GinecoAI</div>
+      <div class="logo-sub">Assistente Clinico RAG</div>
+    </div>
+  </div>
+
+  <button class="new-chat-btn" onclick="newChat()">✦ Nuova Sessione</button>
+
+  <div class="sidebar-search">
+    <span class="search-icon">🔍</span>
+    <input type="text" placeholder="Cerca sessioni…" id="sessionSearch">
+  </div>
+
+  <div class="sidebar-section-header">
+    <div class="sidebar-section-title">Sessioni Recenti</div>
+    <span class="sess-cnt" id="sessionsCount">0</span>
+  </div>
+
+  <div class="session-list" id="sessionList">
+    <div class="session-empty">Nessuna sessione — avvia una chat</div>
+  </div>
+
+  <div class="sidebar-bottom">
+    <div class="sidebar-bottom-item">
+      <span>🧠</span><span class="sidebar-bottom-val">Gemini 2.5 Flash</span>
+    </div>
+    <div class="sidebar-bottom-item">
+      <span>📄</span><span class="sidebar-bottom-val">41 documenti</span>
+    </div>
+    <div class="sidebar-bottom-item">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 5px var(--success);display:inline-block"></span>Backend</span>
+      <span class="sidebar-bottom-val">Online</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ── MAIN ──────────────────────────────────────────── -->
+<div class="main">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <div class="toggle-sidebar" onclick="toggleSidebar()" title="Sessioni">☰</div>
+      <div>
+        <div class="header-title" id="headerTitle">Consulenza Clinica AI</div>
+        <div class="header-subtitle">Ginecologia e Ostetricia · SIGO 2025</div>
+      </div>
+    </div>
+    <div class="header-right" style="position:relative">
+      <div class="rag-badge">⚡ RAG</div>
+      <div class="status-dot"><div class="dot"></div><span>Online</span></div>
+      <div class="header-btn" id="toggleDocsBtn" title="Documenti" onclick="toggleDocs()">📋</div>
+      <div class="header-btn" title="Nuova chat" onclick="newChat()">✦</div>
+      <div class="header-btn" id="settingsBtn" title="Impostazioni" onclick="toggleSettings()">⚙</div>
+      <!-- SETTINGS PANEL -->
+      <div id="settingsPanel" style="display:none;position:absolute;top:46px;right:14px;background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 10px 8px;min-width:130px;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,0.6);backdrop-filter:blur(12px)">
+        <div style="font-size:9px;color:#555;letter-spacing:.08em;padding:0 4px 6px">TEMA</div>
+        <div style="display:flex;flex-direction:column;gap:3px">
+          <button class="theme-btn" data-theme="v0" onclick="setTheme('v0')" style="font-size:11px;padding:4px 10px;border-radius:7px;border:1px solid rgba(59,130,246,0.35);background:rgba(59,130,246,0.1);color:#93c5fd;cursor:pointer;font-family:inherit;text-align:left">⬤ Blu</button>
+          <button class="theme-btn" data-theme="v1" onclick="setTheme('v1')" style="font-size:11px;padding:4px 10px;border-radius:7px;border:1px solid rgba(245,158,11,0.35);background:rgba(245,158,11,0.1);color:#fcd34d;cursor:pointer;font-family:inherit;text-align:left">⬤ Ambra</button>
+          <button class="theme-btn" data-theme="v2" onclick="setTheme('v2')" style="font-size:11px;padding:4px 10px;border-radius:7px;border:1px solid rgba(16,185,129,0.35);background:rgba(16,185,129,0.1);color:#6ee7b7;cursor:pointer;font-family:inherit;text-align:left">⬤ Verde</button>
+          <button class="theme-btn" data-theme="v3" onclick="setTheme('v3')" style="font-size:11px;padding:4px 10px;border-radius:7px;border:1px solid rgba(148,163,184,0.35);background:rgba(148,163,184,0.12);color:#e2e8f0;cursor:pointer;font-family:inherit;text-align:left">⬤ Grafite</button>
+          <button class="theme-btn" data-theme="v4" onclick="setTheme('v4')" style="font-size:11px;padding:4px 10px;border-radius:7px;border:1px solid rgba(139,92,246,0.35);background:rgba(139,92,246,0.1);color:#c4b5fd;cursor:pointer;font-family:inherit;text-align:left">⬤ Viola</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- RAG INFO BAR -->
+  <div class="rag-bar">
+    <div class="rag-bar-item">🔍 Embedding: <span class="rag-num">MiniLM-L12 · 384d</span></div>
+    <span class="rag-bar-sep">|</span>
+    <div class="rag-bar-item">📄 Documenti: <span class="rag-num">41 PDF</span> (56,5MB · 7.2M chrs · 1.04M wrds)</div>
+    <span class="rag-bar-sep">|</span>
+    <div class="rag-bar-item">📚 Chunk indicizzati: <span class="rag-num" id="barChunks">24.365</span></div>
+    <span class="rag-bar-sep">|</span>
+    <div class="rag-bar-item">🗂 Ingestione: <span class="rag-num">25/02/2026 19:26</span></div>
+    <span class="rag-bar-sep">|</span>
+    <div class="rag-bar-item">⚡ Indicizzazione: <span class="rag-num">25/02/2026 18:14</span></div>
+    <span class="rag-bar-sep">|</span>
+    <div class="rag-bar-item">🧠 Modello AI: <span class="rag-num">Gemini 2.5 Flash</span></div>
+    <span class="rag-bar-sep">|</span>
+    <div class="rag-bar-item" title="Token stimati sessione corrente (Gemini 2.5 Flash)">⬆ <span class="rag-num" id="tokIn">0</span> in · ⬇ <span class="rag-num" id="tokOut">0</span> out · <span class="rag-num" id="tokCost">$0.0000</span></div>
+  </div>
+
+  <!-- CONTENT AREA: chat + docs panel -->
+  <div class="content-area">
+
+    <!-- CHAT -->
+    <div class="chat-area" id="chatArea"></div>
+
+    <!-- DOCS PANEL (right, collapsible) -->
+    <aside class="docs-panel collapsed" id="docsPanel">
+      <div class="docs-panel-header">
+        <span class="docs-panel-title">📚 Documenti</span>
+        <button class="docs-panel-close" onclick="toggleDocs()" title="Chiudi">×</button>
+      </div>
+
+      <div class="sidebar-search">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Cerca documenti…" id="docSearch">
+      </div>
+
+      <div class="doc-list" id="docList"></div>
+
+      <div class="docs-panel-footer">
+        <span><span class="sel-count" id="selCount">6</span> / 41 selezionati</span>
+        <span style="cursor:pointer;color:var(--blue);font-size:10px;" onclick="toggleAll()">Tutte</span>
+      </div>
+    </aside>
+
+  </div><!-- /content-area -->
+
+  <!-- INPUT -->
+  <div class="input-area">
+    <div class="input-hints" id="hints">
+      <div class="hint-chip" onclick="useHint(this)">Gestione gravidanza protratta</div>
+      <div class="hint-chip" onclick="useHint(this)">Screening trisomia 21</div>
+      <div class="hint-chip" onclick="useHint(this)">Trattamento emorragia post-partum</div>
+      <div class="hint-chip" onclick="useHint(this)">Induzione del parto a 41 settimane</div>
+    </div>
+    <div class="input-row">
+      <textarea class="input-box" id="inputBox"
+        placeholder="Chiedi una consulenza basata sui documenti clinici..."
+        rows="1"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
+    </div>
+    <div class="input-meta">
+      <span>Le risposte sono basate esclusivamente sui documenti selezionati</span>
+      <a href="https://www.istreamzone.it" target="_blank" rel="noopener">by iStream S.r.l. &copy;2026</a>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script src="demo.js"></script>
+</body>
+</html>
