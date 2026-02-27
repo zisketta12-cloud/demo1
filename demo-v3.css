@@ -158,49 +158,6 @@ body {
 .session-item:hover .session-del { opacity: 1; }
 .session-del:hover { background: #f8514929; color: #ff7b72; }
 
-.session-wrap { margin-bottom: 4px; }
-.session-wrap.open .session-item { margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
-.session-tree-toggle {
-  width: 19px;
-  height: 19px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: var(--bg2);
-  color: var(--text2);
-  font-size: 10px;
-  cursor: pointer;
-  transition: transform .16s ease, border-color .16s ease;
-}
-.session-tree-toggle:hover { border-color: var(--cyan); color: var(--text); }
-.session-tree-toggle.open { transform: rotate(90deg); }
-.session-tree-toggle.disabled { border-style: dashed; opacity: .45; display:flex;align-items:center;justify-content:center; }
-.session-doc-tree {
-  border: 1px solid #1f6feb4d;
-  border-top: 0;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  background: #0f1622;
-  padding: 6px;
-}
-.session-doc-leaf {
-  width: 100%;
-  border: 0;
-  background: transparent;
-  color: var(--text2);
-  text-align: left;
-  font-size: 10.5px;
-  padding: 5px 6px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-}
-.session-doc-leaf:hover { background: #1f6feb26; color: var(--text); }
-.doc-leaf-branch { color: var(--text3); }
-.doc-leaf-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.doc-leaf-meta { color: var(--text3); font-size: 10px; }
-
 .sidebar-bottom {
   border-top: 1px solid var(--border);
   padding: 10px 14px;
