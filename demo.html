@@ -5,6 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GinecoAI — Assistente Clinico</title>
 <link rel="stylesheet" id="theme-link" href="demo-v3.css?v=gh3">
+<style>
+  /* Global override: collapsed sidebar brand should work on every theme */
+  .sidebar.collapsed {
+    width: 92px !important;
+    min-width: 92px !important;
+    overflow: hidden !important;
+  }
+  .sidebar.collapsed > :not(.sidebar-logo) {
+    display: none !important;
+  }
+  .sidebar.collapsed .sidebar-logo {
+    padding: 14px 8px !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 6px !important;
+    border-bottom: 0 !important;
+  }
+  .sidebar.collapsed .logo-text {
+    font-size: 11px !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+  }
+  .sidebar.collapsed .logo-sub {
+    display: none !important;
+  }
+</style>
+
 </head>
 <body>
 
