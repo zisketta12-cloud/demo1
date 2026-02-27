@@ -547,3 +547,28 @@ header {
   .docs-panel { display: none; }
   .rag-bar { display: none; }
 }
+
+/* Collapsed sidebar: keep brand visible */
+.sidebar.collapsed {
+  width: 84px;
+  min-width: 84px;
+  overflow: hidden;
+}
+.sidebar.collapsed > :not(.sidebar-logo) {
+  display: none !important;
+}
+.sidebar.collapsed .sidebar-logo {
+  padding: 14px 8px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 6px;
+  border-bottom: 0;
+}
+.sidebar.collapsed .logo-text {
+  font-size: 12px;
+  line-height: 1.15;
+}
+.sidebar.collapsed .logo-sub {
+  display: none;
+}
